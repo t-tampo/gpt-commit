@@ -3,9 +3,9 @@ from setuptools import setup, find_packages
 setup(
     name="gpt-commit",
     version="0.1.0",
-    description="AI-powered commit message generator and selector",
-    author="Your Name",
-    author_email="your.email@example.com",
+    description="AI-powered commit message generator",
+    author="tkt.tmp",
+    author_email="t.tampo@okorande.com",
     url="https://github.com/yourusername/gpt-commit",
     packages=find_packages(),
     install_requires=[
