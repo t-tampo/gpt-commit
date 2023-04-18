@@ -1,5 +1,4 @@
 import argparse
-from typing import List
 
 from gpt_commit.ai_model import generate_commit_message, handle_ai_exception
 from gpt_commit.utils import get_git_diff, commit_with_message, notify_commit_result
@@ -24,9 +23,6 @@ def main() -> None:
     try:
         diff = get_git_diff()
         commit_message = generate_commit_message(diff)
-        print("-------------------------")
-        print(commit_message)
-        print("-------------------------")
     except Exception as e:
         print("An error occurred while generating the commit message:")
         print(handle_ai_exception(e))

@@ -13,7 +13,7 @@ def count_tokens(example_string: str) -> int:
     tokens = tokenizer.tokenize(example_string)
     return len(tokens)
 
-class DummyAIModel:
+class AIModel:
     def generate_message(self, diff: str) -> str:
         template = """
         Instruction:
@@ -31,19 +31,19 @@ class DummyAIModel:
         llm_chain = LLMChain(
             llm=OpenAI(temperature=0), 
             prompt=prompt, 
-            # verbose=True
         )
 
         # もし差分が4000トークンを超えていたら、エラーを返す
         if count_tokens(diff) > 4000:
             raise Exception("The diff is too long.")
         
+        
         message = llm_chain.predict(diff=diff)
 
         return message
 
 def generate_commit_message(diff: str) -> str:
-    ai_model = DummyAIModel()
+    ai_model = AIModel()
     try:
         commit_message = ai_model.generate_message(diff)
     except Exception as e:
