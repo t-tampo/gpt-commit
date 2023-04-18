@@ -1,20 +1,18 @@
-import random
 from typing import List
 from transformers import GPT2Tokenizer
-import openai
-
 from langchain import PromptTemplate, OpenAI, LLMChain
 
-
-
-tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
-
-def count_tokens(example_string: str) -> int:
-    tokens = tokenizer.tokenize(example_string)
-    return len(tokens)
-
 class AIModel:
+    def __init__(self) -> None:
+        self.tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+
+    def count_tokens(self, example_string: str) -> int:
+        """文字列内のトークン数をカウントする"""
+        tokens = self.tokenizer.tokenize(example_string)
+        return len(tokens)
+
     def generate_message(self, diff: str) -> str:
+        """与えられた diff に基づいて適切なコミットメッセージを生成する"""
         template = """
         Instruction:
         Generate 1 appropriate commit messages using the following diff.
@@ -34,15 +32,14 @@ class AIModel:
         )
 
         # もし差分が4000トークンを超えていたら、エラーを返す
-        if count_tokens(diff) > 4000:
+        if self.count_tokens(diff) > 4000:
             raise Exception("The diff is too long.")
         
-        
         message = llm_chain.predict(diff=diff)
-
         return message
 
 def generate_commit_message(diff: str) -> str:
+    """AIModel を使用して diff からコミットメッセージを生成する"""
     ai_model = AIModel()
     try:
         commit_message = ai_model.generate_message(diff)
@@ -51,5 +48,6 @@ def generate_commit_message(diff: str) -> str:
     return commit_message
 
 def handle_ai_exception(e: Exception) -> str:
+    """AI に関連する例外を処理し、エラーメッセージを生成する"""
     error_message = f"An error occurred while generating commit messages: {str(e)}"
     return error_message
