@@ -1,0 +1,35 @@
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+*.pyenv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# macOS artifacts
+.DS_Store
+
+# Visual Studio Code artifacts
+.vscode/
+
+# PyCharm artifacts
+.idea/
+
+# Distribution / packaging
+.Python
+dist/
+build/
+*.egg-info/
+*.egg
+*.whl
+
+# pytest artifacts
+.pytest_cache/
+
+# MyPy cache
+.mypy_cache/
