@@ -1,7 +1,8 @@
 import argparse
 
 from gpt_commit.ai_model import generate_commit_message, handle_ai_exception
-from gpt_commit.utils import get_git_diff, commit_with_message, notify_commit_result
+from gpt_commit.utils import GitUtils
+
 
 def display_commit_message(commit_message: str) -> None:
     """生成されたコミットメッセージを表示する。"""
@@ -32,7 +33,7 @@ def main() -> None:
 
     # git diff を取得し、コミットメッセージを生成
     try:
-        diff = get_git_diff()
+        diff = GitUtils.get_git_diff()
         commit_message = generate_commit_message(diff)
     except Exception as e:
         # 例外を処理し、ユーザーに手動でコミットメッセージを入力させる
@@ -48,8 +49,8 @@ def main() -> None:
             commit_message = get_user_choice(commit_message, True)
 
     # 選択されたコミットメッセージでコミットし、結果をユーザーに通知
-    result = commit_with_message(commit_message)
-    notify_commit_result(result)
+    result = GitUtils.commit_with_message(commit_message)
+    GitUtils.notify_commit_result(result)
 
 if __name__ == '__main__':
     main()
