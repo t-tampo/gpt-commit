@@ -1,8 +1,8 @@
 import argparse
 from typing import List
 
-from ai_model import generate_commit_messages, handle_ai_exception
-from utils import get_git_diff, commit_with_message, notify_commit_result
+from gpt_commit.ai_model import generate_commit_messages, handle_ai_exception
+from gpt_commit.utils import get_git_diff, commit_with_message, notify_commit_result
 
 def display_commit_messages(commit_messages: List[str]) -> None:
     for idx, msg in enumerate(commit_messages, start=1):

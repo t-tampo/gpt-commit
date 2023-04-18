@@ -2,7 +2,7 @@ import io
 import unittest
 from unittest.mock import patch
 from typing import List
-from main import display_commit_messages, get_user_choice
+from gpt_commit.main import display_commit_messages, get_user_choice
 
 class TestMain(unittest.TestCase):
 

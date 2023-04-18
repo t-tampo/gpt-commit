@@ -1,6 +1,10 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import unittest
 from unittest.mock import MagicMock, patch
-from ai_model import generate_commit_messages, handle_ai_exception, DummyAIModel
+from gpt_commit.ai_model import generate_commit_messages, handle_ai_exception, DummyAIModel
 
 class TestAIModel(unittest.TestCase):
 
@@ -13,7 +17,8 @@ class TestAIModel(unittest.TestCase):
             "Add new feature to the application"
         ]
 
-        with patch('ai_model.DummyAIModel.generate_messages', return_value=dummy_messages):
+        with patch('gpt_commit.ai_model.DummyAIModel.generate_messages', return_value=dummy_messages):
+
             result = generate_commit_messages(dummy_diff)
             self.assertEqual(result, dummy_messages)
 
