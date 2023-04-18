@@ -17,7 +17,7 @@ def get_user_choice(commit_message: str, allow_edit: bool) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate a commit message with AI.")
-    parser.add_argument('--edit', action='store_true', help="Allow editing of the generated commit message.")
+    parser.add_argument('--no-edit', action='store_true', help="Disable editing of the generated commit message.")
     args = parser.parse_args()
 
     try:
@@ -29,7 +29,7 @@ def main() -> None:
         commit_message = input("Please enter a commit message manually: ")
     else:
         display_commit_message(commit_message)
-        if args.edit:
+        if not args.no_edit:
             commit_message = get_user_choice(commit_message, True)
 
     result = commit_with_message(commit_message)
