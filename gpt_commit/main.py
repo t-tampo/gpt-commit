@@ -16,11 +16,13 @@ def get_user_choice(commit_message: str, allow_edit: bool) -> str:
     :param allow_edit: True の場合、ユーザーはコミットメッセージを編集できる
     :return: 最終的なコミットメッセージ。生成されたものか、編集されたもの
     """
-    user_input = input(f"Enter 'c' to use the generated commit message, or 'e' to edit it: ").lower()
+    user_input = input("Enter 'c' to use the generated commit message, 'e' to edit it, or 'q' to quit: ").lower()
     if allow_edit and user_input == 'e':
         return input("Enter your edited commit message: ")
     elif user_input == 'c':
         return commit_message
+    elif user_input == 'q':
+        exit(0)
     else:
         raise ValueError("Invalid choice.")
 
