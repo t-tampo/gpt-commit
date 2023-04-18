@@ -33,8 +33,8 @@ def main() -> None:
     parser.add_argument('--no-edit', action='store_true', help="Disable editing of the generated commit message.")
     args = parser.parse_args()
 
-    # git diff を取得し、コミットメッセージを生成
     try:
+        # git diff を取得し、コミットメッセージを生成
         diff = GitUtils.get_git_diff()
         commit_message = generate_commit_message(diff)
     except Exception as e:
