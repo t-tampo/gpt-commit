@@ -7,12 +7,10 @@ class AIModel:
         self.tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
     def count_tokens(self, example_string: str) -> int:
-        """文字列内のトークン数をカウントする"""
         tokens = self.tokenizer.tokenize(example_string)
         return len(tokens)
 
     def generate_message(self, diff: str) -> str:
-        """与えられた diff に基づいて適切なコミットメッセージを生成する"""
         template = """
         Instruction:
         Generate 1 appropriate commit messages using the following diff.
@@ -31,7 +29,7 @@ class AIModel:
             prompt=prompt, 
         )
 
-        # もし差分が4000トークンを超えていたら、エラーを返す
+        # gpt3 has a limit of 4,096 tokens per request
         if self.count_tokens(diff) > 4000:
             raise Exception("The diff is too long.")
         
