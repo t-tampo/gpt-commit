@@ -13,6 +13,7 @@ langchain = "^0.0.142"
 transformers = "^4.28.1"
 torch = "^2.0.0"
 termcolor = "^2.2.0"
+prompt-toolkit = "^3.0.38"
 
 
 [build-system]
