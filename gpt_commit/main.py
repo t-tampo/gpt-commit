@@ -17,7 +17,7 @@ def get_user_choice(commit_message: str, allow_edit: bool) -> str:
     :return: 最終的なコミットメッセージ。生成されたものか、編集されたもの
     """
     print("Review the generated commit message...")
-    user_input = input("Enter 'c' to use the generated commit message, 'e' to edit it, or 'q' to quit: ").lower()
+    user_input = input("Enter 'c' to confirm and use the generated commit message, 'e' to edit the message, or 'q' to quit the program: ").lower()
     if allow_edit and user_input == 'e':
         print("Editing commit message...")
         return input("Enter your edited commit message: ")
