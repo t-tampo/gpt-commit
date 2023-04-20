@@ -39,7 +39,6 @@ class AIModel:
         return message
 
 def generate_commit_message(diff: str) -> str:
-    """AIModel を使用して diff からコミットメッセージを生成する"""
     ai_model = AIModel()
     try:
         commit_message = ai_model.generate_message(diff)
@@ -48,6 +47,5 @@ def generate_commit_message(diff: str) -> str:
     return commit_message
 
 def handle_ai_exception(e: Exception) -> str:
-    """AI に関連する例外を処理し、エラーメッセージを生成する"""
     error_message = f"An error occurred while generating commit messages: {str(e)}"
     return error_message

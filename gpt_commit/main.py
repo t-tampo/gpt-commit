@@ -22,7 +22,7 @@ def get_user_choice(commit_message: str, allow_edit: bool) -> str:
 
         @bindings.add(Keys.ControlD)
         def _(event):
-            event.app.exit()
+            event.app.exit(result=session.default_buffer.text)
 
         try:
             edited_message = session.prompt("Edit the generated commit message (press Enter to keep the original, Ctrl-D to finish editing):\n", default=commit_message, multiline=True, key_bindings=bindings)
