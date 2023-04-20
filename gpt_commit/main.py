@@ -36,6 +36,9 @@ def main() -> None:
     try:
         # git diff を取得し、コミットメッセージを生成
         diff = GitUtils.get_git_diff()
+        if not diff:
+            print("No changes to commit.")
+            exit(0)
         commit_message = generate_commit_message(diff)
     except Exception as e:
         # 例外を処理し、ユーザーに手動でコミットメッセージを入力させる
