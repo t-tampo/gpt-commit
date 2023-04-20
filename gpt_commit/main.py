@@ -6,7 +6,7 @@ from gpt_commit.utils import GitUtils
 
 def display_commit_message(commit_message: str) -> None:
     """生成されたコミットメッセージを表示する。"""
-    print(f"Generated commit message: {commit_message}")
+    print(f"\nGenerated commit message: {commit_message}")
 
 def get_user_choice(commit_message: str, allow_edit: bool) -> str:
     """
@@ -16,12 +16,15 @@ def get_user_choice(commit_message: str, allow_edit: bool) -> str:
     :param allow_edit: True の場合、ユーザーはコミットメッセージを編集できる
     :return: 最終的なコミットメッセージ。生成されたものか、編集されたもの
     """
+    print("Review the generated commit message...")
     user_input = input("Enter 'c' to use the generated commit message, 'e' to edit it, or 'q' to quit: ").lower()
     if allow_edit and user_input == 'e':
+        print("Editing commit message...")
         return input("Enter your edited commit message: ")
     elif user_input == 'c':
         return commit_message
     elif user_input == 'q':
+        print("Exiting the program...")
         exit(0)
     else:
         raise ValueError("Invalid choice.")
@@ -35,10 +38,12 @@ def main() -> None:
 
     try:
         # git diff を取得し、コミットメッセージを生成
+        print("Getting git diff...")
         diff = GitUtils.get_git_diff()
         if not diff:
             print("No changes to commit.")
             exit(0)
+        print("Generating commit message using AI...")
         commit_message = generate_commit_message(diff)
     except Exception as e:
         # 例外を処理し、ユーザーに手動でコミットメッセージを入力させる
@@ -54,7 +59,9 @@ def main() -> None:
             commit_message = get_user_choice(commit_message, True)
 
     # 選択されたコミットメッセージでコミットし、結果をユーザーに通知
+    print("Committing with the chosen message...")
     result = GitUtils.commit_with_message(commit_message)
+    print("Notifying the commit result...")
     GitUtils.notify_commit_result(result)
 
 if __name__ == '__main__':
