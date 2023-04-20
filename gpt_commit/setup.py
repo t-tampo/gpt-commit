@@ -3,17 +3,22 @@ from setuptools import setup, find_packages
 setup(
     name="gpt-commit",
     version="0.1.0",
-    description="AI-powered commit message generator",
-    author="tkt.tmp",
+    description="AIによるコミットメッセージ生成ツール",
+    author="tkt-tmp",
     author_email="t.tampo@okorande.com",
     url="https://github.com/yourusername/gpt-commit",
     packages=find_packages(),
     install_requires=[
-        # ここに必要な依存パッケージをリストしてください。
+        "openai>=0.27.4",
+        "langchain>=0.0.142",
+        "transformers>=4.28.1",
+        "torch>=2.0.0",
+        "termcolor>=2.2.0",
+        "prompt-toolkit>=3.0.38",
     ],
     entry_points={
         'console_scripts': [
-            'gpt-commit=main:main'
+            'gpt-commit=gpt_commit.main:main'
         ],
     },
     classifiers=[
