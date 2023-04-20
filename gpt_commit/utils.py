@@ -5,7 +5,7 @@ class GitUtils:
     @staticmethod
     def get_git_diff() -> str:
         try:
-            diff = subprocess.check_output(['git', 'diff']).decode('utf-8')
+            diff = subprocess.check_output(['git', 'diff', '--staged']).decode('utf-8')
         except subprocess.CalledProcessError as e:
             raise e
         return diff
