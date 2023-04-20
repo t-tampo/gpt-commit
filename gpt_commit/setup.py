@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="gpt-commit",
-    version="0.1.0",
+    version="0.1.1",
     description="AIによるコミットメッセージ生成ツール",
     author="tkt-tmp",
     author_email="t.tampo@okorande.com",
