@@ -2,11 +2,12 @@ import argparse
 
 from gpt_commit.ai_model import generate_commit_message, handle_ai_exception
 from gpt_commit.utils import GitUtils
-
+from termcolor import colored
 
 def display_commit_message(commit_message: str) -> None:
     """生成されたコミットメッセージを表示する。"""
-    print(f"\nGenerated commit message: {commit_message}")
+    colored_message = colored(f"\nGenerated commit message: {commit_message}", 'green')
+    print(colored_message)
 
 def get_user_choice(commit_message: str, allow_edit: bool) -> str:
     """
